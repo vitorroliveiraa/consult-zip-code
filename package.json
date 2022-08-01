@@ -1,43 +1,46 @@
 {
-  "name": "typescript",
-  "version": "1.0.0",
-  "description": "",
+  "name": "consult-zip-code",
+  "version": "0.0.1",
+  "description": "Consulta um CEP específico na API da viacep.com.br",
   "main": "server.ts",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "start": "",
-    "migration:create": "typeorm-ts-node-commonjs migration:create ./src/database/migrations/$npm_config_name",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/database/index.ts ./src/database/migrations/$npm_config_name",
-    "migration:show": "typeorm-ts-node-commonjs migration:show -d ./src/database/index.ts",
-    "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/database/index.ts",
-    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d ./src/database/index.ts",
-    "schema:drop": "typeorm-ts-node-commonjs schema:drop -d ./src/database/index.ts",
     "test": "set NODE_ENV=test && jest -i",
     "test:watch": "jest --watchAll -i"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["viacep", "axios", "cache"],
+  "author": {
+    "name": "Vítor Oliveira",
+    "email": "vitorroliveiraa@outlook.com.br",
+    "url": "https://github.com/vitorroliveiraa"
+  },
+  "bugs": "",
   "license": "ISC",
   "engines": {
     "node": ">=14"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
-    "pg": "^8.7.3",
+    "jsonwebtoken": "^8.5.1",
     "reflect-metadata": "^0.1.13",
-    "swagger-ui-express": "^4.4.0",
+    "supertest": "^6.2.3",
     "tsyringe": "^4.7.0",
     "typeorm": "^0.3.7",
-    "uuid": "^8.3.2",
-    "supertest": "^6.2.3"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.3",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^18.0.0",
     "@types/supertest": "^2.0.12",
     "@types/swagger-ui-express": "^4.1.3",

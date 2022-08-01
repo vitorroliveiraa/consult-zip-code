@@ -4,10 +4,8 @@ import 'dotenv/config';
 
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
-import swaggerUI from 'swagger-ui-express';
 
 import { AppError } from '../../errors/AppError';
-// import swaggerFile from '../../../swagger.json'; API Doc
 import { router } from './routes';
 
 import '../../container';
