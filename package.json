@@ -15,7 +15,7 @@
     "email": "vitorroliveiraa@outlook.com.br",
     "url": "https://github.com/vitorroliveiraa"
   },
-  "bugs": "",
+  "bugs": "https://github.com/vitorroliveiraa/consult-zip-code/issues",
   "license": "ISC",
   "engines": {
     "node": ">=14"
