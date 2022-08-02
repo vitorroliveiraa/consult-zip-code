@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { AppError } from 'shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
 import { IDateProvider } from '../../../../shared/container/providers/DateProvider/IDateProvider';
+import { IAxiosProvider } from '../../../../shared/container/providers/HttpClientProvider/IAxiosProvider';
+import { AppError } from '../../../../shared/errors/AppError';
 import { IRedisRepositoryInMemory } from '../../repositories/IRedisRepositoryInMemory';
 
 @injectable()
@@ -11,7 +11,9 @@ export class ConsultZipCodeUseCase {
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
     @inject('RedisRepositoryInMemory')
-    private redisRepositoryInMemory: IRedisRepositoryInMemory
+    private redisRepositoryInMemory: IRedisRepositoryInMemory,
+    @inject('AxiosProvider')
+    private axiosProvider: IAxiosProvider
   ) {}
 
   async execute(zipCode: string): Promise<object> {
@@ -37,13 +39,9 @@ export class ConsultZipCodeUseCase {
       await this.redisRepositoryInMemory.removeBy(zipCode);
     }
 
-    const response = await axios.get(
-      `https://viacep.com.br/ws/${zipCode}/json/`
-    );
+    const response = await this.axiosProvider.findBy(zipCode);
 
-    if (response.data.erro) {
-      throw new AppError('zip code not found!', 404);
-    }
+    if (response.data.erro) throw new AppError('zip code not found!', 404);
 
     const address = response.data;
 
